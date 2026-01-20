@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In - Rural Market</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #fdf2f8 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(219, 39, 119, 0.05) 0%, transparent 70%);
+      animation: rotate 40s linear infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .signin-container {
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(147, 51, 234, 0.15);
+      max-width: 440px;
+      width: 100%;
+      padding: 3rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #9333ea, #db2777);
+      border-radius: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(147, 51, 234, 0.3);
+    }
+
+    .logo-text {
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #9333ea, #db2777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .signin-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .signin-subtitle {
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #9333ea;
+      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #6b7280;
+      font-size: 1.25rem;
+      padding: 0.25rem;
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .checkbox-input {
+      width: 1.125rem;
+      height: 1.125rem;
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      color: #6b7280;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .forgot-password {
+      color: #9333ea;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #9333ea, #db2777);
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(147, 51, 234, 0.5);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      color: #9ca3af;
+      font-size: 0.875rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
+    }
+
+    .social-login {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-btn {
+      padding: 0.875rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .social-btn:hover {
+      border-color: #9333ea;
+      background: rgba(147, 51, 234, 0.05);
+    }
+
+    .signup-link {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    .signup-link a {
+      color: #9333ea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #dc2626;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .alert-message {
+      padding: 1rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      display: none;
+      font-size: 0.875rem;
+    }
+
+    .alert-message.show {
+      display: block;
+    }
+
+    .alert-error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .alert-success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    .role-customer {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .role-seller {
+      background: #fae8ff;
+      color: #86198f;
+    }
+
+    .role-admin {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    @media (max-width: 640px) {
+      .signin-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .social-login {
+        grid-template-columns: 1fr;
+      }
+
+      .form-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="signin-container">
+    <div class="logo-section">
+      <div class="logo-icon">🦋</div>
+      <div class="logo-text">Rural Market</div>
+    </div>
+
+    <h1 class="signin-title">Welcome Back!</h1>
+    <p class="signin-subtitle">Sign in to continue to your account</p>
+
+    <div class="alert-message" id="alertMessage"></div>
+
+    <form id="signinForm">
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+        <div class="error-message" id="emailError">Please enter a valid email</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
+        </div>
+        <div class="error-message" id="passwordError">Password is required</div>
+      </div>
+
+      <div class="form-footer">
+        <div class="remember-me">
+          <input type="checkbox" id="rememberMe" class="checkbox-input">
+          <label class="checkbox-label" for="rememberMe">Remember me</label>
+        </div>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="submit-btn">Sign In</button>
+    </form>
+
+    <div class="divider">OR</div>
+
+    <div class="social-login">
+      <button class="social-btn" onclick="socialLogin('google')">
+        <span>🔍</span> Google
+      </button>
+      <button class="social-btn" onclick="socialLogin('facebook')">
+        <span>📘</span> Facebook
+      </button>
+    </div>
+
+    <div class="signup-link">
+      Don't have an account? <a href="Signup.html">Sign Up</a>
+    </div>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    function togglePassword() {
+      const field = document.getElementById('password');
+      const btn = field.nextElementSibling;
+      if (field.type === 'password') {
+        field.type = 'text';
+        btn.textContent = '🙈';
+      } else {
+        field.type = 'password';
+        btn.textContent = '👁️';
+      }
+    }
+
+    // Show alert message
+    function showAlert(message, type) {
+      const alert = document.getElementById('alertMessage');
+      alert.textContent = message;
+      alert.className = `alert-message alert-${type} show`;
+      setTimeout(() => {
+        alert.classList.remove('show');
+      }, 5000);
+    }
+
+    // Form validation and submission
+    document.getElementById('signinForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let isValid = true;
+
+      // Email validation
+      const email = document.getElementById('email').value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').classList.add('show');
+        isValid = false;
+      } else {
+        document.getElementById('emailError').classList.remove('show');
+      }
+
+      // Password validation
+      const password = document.getElementById('password').value;
+      if (password.length === 0) {
+        document.getElementById('passwordError').classList.add('show');
+        isValid = false;
+      } else {
+        document.getElementById('passwordError').classList.remove('show');
+      }
+
+      if (isValid) {
+        // Create FormData object
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('rememberMe', document.getElementById('rememberMe').checked);
+
+        // Disable submit button
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Signing In...';
+
+        // Send data to PHP backend
+        fetch('signin.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            showAlert('Login successful! Redirecting...', 'success');
+
+            // Redirect based on role after 1.5 seconds
+            setTimeout(() => {
+              window.location.href = data.redirect;
+            }, 1500);
+          } else {
+            showAlert(data.message, 'error');
+            
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showAlert('An error occurred. Please try again.', 'error');
+          
+          // Re-enable submit button
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign In';
+        });
+      }
+    });
+
+    // Social login
+    function socialLogin(provider) {
+      alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login will be implemented with OAuth`);
+    }
+  </script>
+</body>
+</html>

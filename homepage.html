@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rural Market</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="HomePage.css">
+</head>
+<body>
+
+<div class="homepage">
+
+<div class="blob blob-purple"></div>
+<div class="blob blob-pink"></div>
+<nav class="nav-bar">
+  <div class="nav-container">
+    <div class="logo">
+    <div class="butterfly-logo">
+    <div class="butterfly"></div>
+    </div>
+    <span class="logo-text">Rural Market</span>
+</div>
+
+    <div class="nav-buttons">
+      <div class="language-switcher">
+       <button class="lang-btn active" onclick="setLanguage('en')">English</button>
+       <button class="lang-btn" onclick="setLanguage('bn')">বাংলা</button>
+      </div>
+      <button class="btn btn-ghost" id="signIn" onclick="window.location.href='Signin.html'"></button>
+      <button class="btn btn-primary" id="getStarted" onclick="window.location.href='Signup.html'">
+
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-section">
+  <div class="hero-container">
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span id="empoweringBadge"></span>
+      </div>
+
+      <h1 class="hero-title text-reveal" id="heroTitle"></h1>
+      <p class="hero-description text-reveal" id="heroDescription"></p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-primary btn-lg" id="startShopping"></button>
+        <button class="btn btn-outline btn-lg" id="becomeSeller"></button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label" id="activeSellers"></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5000+</div>
+          <div class="stat-label" id="happyCustomers"></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2500+</div>
+          <div class="stat-label" id="productsListed"></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4.8★</div>
+          <div class="stat-label" id="averageRating"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image-container">
+      <div class="hero-image-wrapper">
+        <img src="Image/indian-handicraft-7837974_1280.jpg" alt="Handicraft Image">
+             class="hero-image"
+             alt="Rural women entrepreneurs">
+        <div class="hero-image-overlay"></div>
+      </div>
+
+      <div class="floating-card floating-card-1">
+        <div class="floating-card-icon icon-green">📦</div>
+        <div class="floating-card-content">
+          <div class="floating-card-label" id="ordersToday"></div>
+          <div class="floating-card-value">Ordernumber</div>
+        </div>
+      </div>
+
+      <div class="floating-card floating-card-2">
+        <div class="floating-card-icon icon-purple"></div>
+        <div class="floating-card-content">
+          <div class="floating-card-label" id="happyCustomers2"></div>
+          <div class="floating-card-value">%</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section-white">
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title section-title-gradient" id="whyChoose"></h2>
+      <p class="section-description" id="whyChooseDesc"></p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#a855f7;">🛒</div>
+        <h3 class="feature-title" id="feature1Title"></h3>
+        <p class="feature-description" id="feature1Desc"></p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#ec4899;">👥</div>
+        <h3 class="feature-title" id="feature2Title"></h3>
+        <p class="feature-description" id="feature2Desc"></p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#3b82f6;">📈</div>
+        <h3 class="feature-title" id="feature3Title"></h3>
+        <p class="feature-description" id="feature3Desc"></p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#10b981;">🛡</div>
+        <h3 class="feature-title" id="feature4Title"></h3>
+        <p class="feature-description" id="feature4Desc"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title" id="exploreCategories"></h2>
+      <p class="section-description" id="exploreCategoriesDesc"></p>
+    </div>
+
+    <div class="categories-grid">
+      <div class="category-card"><div class="category-emoji">✨</div><h3 id="handicrafts"></h3><p>150+</p></div>
+      <div class="category-card"><div class="category-emoji">🧵</div><h3 id="textiles"></h3><p>120+</p></div>
+      <div class="category-card"><div class="category-emoji">💍</div><h3 id="jewelry"></h3><p>800+</p></div>
+      <div class="category-card"><div class="category-emoji">🏠</div><h3 id="homeDecor"></h3><p>100+</p></div>
+      <div class="category-card"><div class="category-emoji">🍯</div><h3 id="foodProducts"></h3><p>700+</p></div>
+      <div class="category-card"><div class="category-emoji">💄</div><h3 id="beautyProducts"></h3><p>500+</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white">
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="section-title" id="testimonials"></h2>
+      <p class="section-description" id="testimonialsDesc"></p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-content" id="testimonial1"></p>
+        <div class="testimonial-name" id="testimonial1Name"></div>
+        <div class="testimonial-role" id="testimonial1Role"></div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-content" id="testimonial2"></p>
+        <div class="testimonial-name" id="testimonial2Name"></div>
+        <div class="testimonial-role" id="testimonial2Role"></div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-content" id="testimonial3"></p>
+        <div class="testimonial-name" id="testimonial3Name"></div>
+        <div class="testimonial-role" id="testimonial3Role"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="cta-container">
+    <div class="cta-card">
+      <h2 class="cta-title" id="ctaTitle"></h2>
+      <p class="cta-description" id="ctaDesc"></p>
+      <div class="cta-buttons">
+        <button class="btn btn-white btn-lg" id="joinAsSeller" onclick="window.location.href='Signup.html'"></button>
+        <button class="btn btn-outline-white btn-lg" id="startShopping2" onclick="window.location.href='Signup.html'"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="logo-icon">
+          </div>
+          <span class="logo-text" style="color: white;">Rural Market</span>
+        </div>
+        <p class="footer-description" id="footerDesc">
+          Empowering rural women entrepreneurs through digital commerce.
+        </p>
+      </div>
+      <div>
+        <h3 class="footer-title" id="forSellers">For Sellers</h3>
+        <ul class="footer-links">
+          <li class="footer-link" id="startSelling">Start Selling</li>
+          <li class="footer-link" id="sellerResources">Seller Resources</li>
+          <li class="footer-link" id="successStories">Success Stories</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-title" id="forBuyers">For Buyers</h3>
+        <ul class="footer-links">
+          <li class="footer-link" id="browseProducts">Browse Products</li>
+          <li class="footer-link" id="howToBuy">How to Buy</li>
+          <li class="footer-link" id="customerSupport">Customer Support</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-title" id="company">Company</h3>
+        <ul class="footer-links">
+          <li class="footer-link" id="aboutUs">About Us</li>
+          <li class="footer-link" id="contact">Contact</li>
+          <li class="footer-link" id="privacyPolicy">Privacy Policy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footerCopyright">
+        © 2025 Rural Market
+      </p>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="languagebtn.js"></script>
+
+</body>
+</html>
