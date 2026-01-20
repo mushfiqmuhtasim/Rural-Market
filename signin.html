@@ -429,6 +429,7 @@
     </div>
   </div>
 
+  <script src="app.js"></script>
   <script>
     // Toggle password visibility
     function togglePassword() {
@@ -451,6 +452,32 @@
       setTimeout(() => {
         alert.classList.remove('show');
       }, 5000);
+    }
+
+    // Create demo accounts if they don't exist
+    function createDemoAccounts() {
+      if (!app.users.find(u => u.email === 'buyer@demo.com')) {
+        app.registerUser({
+          fullName: 'Demo Buyer',
+          email: 'buyer@demo.com',
+          password: 'demo123',
+          phone: '+880-1700-000000',
+          role: 'buyer',
+          address: 'Dhaka, Bangladesh'
+        });
+      }
+
+      if (!app.users.find(u => u.email === 'seller@demo.com')) {
+        app.registerUser({
+          fullName: 'Demo Seller',
+          email: 'seller@demo.com',
+          password: 'demo123',
+          phone: '+880-1700-000001',
+          role: 'seller',
+          businessName: 'Demo Shop',
+          address: 'Dhaka, Bangladesh'
+        });
+      }
     }
 
     // Form validation and submission
@@ -479,47 +506,34 @@
       }
 
       if (isValid) {
-        // Create FormData object
-        const formData = new FormData();
-        formData.append('email', email);
-        formData.append('password', password);
-        formData.append('rememberMe', document.getElementById('rememberMe').checked);
-
         // Disable submit button
         const submitBtn = document.querySelector('.submit-btn');
         submitBtn.disabled = true;
         submitBtn.textContent = 'Signing In...';
 
-        // Send data to PHP backend
-        fetch('signin.php', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
+        // Use app.js for authentication
+        setTimeout(() => {
+          const result = app.loginUser(email, password);
+          
+          if (result.success) {
             showAlert('Login successful! Redirecting...', 'success');
 
             // Redirect based on role after 1.5 seconds
             setTimeout(() => {
-              window.location.href = data.redirect;
+              if (app.currentUser.role === 'seller') {
+                window.location.href = 'deshboardSeller.html';
+              } else {
+                window.location.href = 'buyerDashboard.html';
+              }
             }, 1500);
           } else {
-            showAlert(data.message, 'error');
+            showAlert(result.message, 'error');
             
             // Re-enable submit button
             submitBtn.disabled = false;
             submitBtn.textContent = 'Sign In';
           }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          showAlert('An error occurred. Please try again.', 'error');
-          
-          // Re-enable submit button
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Sign In';
-        });
+        }, 500);
       }
     });
 
@@ -527,6 +541,12 @@
     function socialLogin(provider) {
       alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login will be implemented with OAuth`);
     }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      redirectIfLoggedIn();
+      createDemoAccounts();
+    });
   </script>
 </body>
 </html>

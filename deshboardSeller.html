@@ -27,7 +27,7 @@
       </nav>
       
       <div class="sidebar-footer">
-        <button class="btn btn-outline" style="width: 100%;">Logout</button>
+        <button class="btn btn-outline" style="width: 100%;" onclick="logout()">Logout</button>
       </div>
     </aside>
 
@@ -90,5 +90,15 @@
       </section>
     </main>
   </div>
+
+  <script src="app.js"></script>
+  <script>
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        app.logoutUser();
+        window.location.href = 'homepage.html';
+      }
+    }
+  </script>
 </body>
 </html>

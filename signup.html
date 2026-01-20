@@ -461,6 +461,7 @@
     </div>
   </div>
 
+  <script src="app.js"></script>
   <script>
     let selectedRole = null;
 
@@ -529,62 +530,51 @@
       }
 
       if (isValid) {
-        // Create FormData object
-        const formData = new FormData();
-        formData.append('fullName', document.getElementById('fullName').value);
-        formData.append('email', email);
-        formData.append('phone', document.getElementById('phone').value);
-        formData.append('password', password);
-        formData.append('role', selectedRole);
-
         // Disable submit button
         const submitBtn = document.querySelector('.submit-btn');
         submitBtn.disabled = true;
         submitBtn.textContent = 'Creating Account...';
 
-        // Send data to PHP backend
-        fetch('signup.php', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
+        // Use app.js for registration
+        setTimeout(() => {
+          const result = app.registerUser({
+            fullName: document.getElementById('fullName').value,
+            email: email,
+            phone: document.getElementById('phone').value,
+            password: password,
+            role: selectedRole === 'customer' ? 'buyer' : selectedRole,
+            address: 'To be updated'
+          });
+
+          if (result.success) {
             // Show success message
             document.getElementById('successMessage').classList.add('show');
 
-            // Redirect based on role after 2 seconds
+            // Auto-login and redirect
             setTimeout(() => {
-              if (selectedRole === 'admin') {
-                window.location.href = 'admin-dashboard.html';
-              } else if (selectedRole === 'seller') {
-                window.location.href = 'seller-dashboard.html';
+              app.loginUser(email, password);
+              if (selectedRole === 'seller') {
+                window.location.href = 'deshboardSeller.html';
+              } else if (selectedRole === 'admin') {
+                window.location.href = 'adminDashboard.html';
               } else {
-                window.location.href = 'homepage.html';
+                window.location.href = 'buyerDashboard.html';
               }
-            }, 2000);
+            }, 1500);
           } else {
             // Show error message
-            if (data.message.includes('Email already registered')) {
-              document.getElementById('emailError').textContent = data.message;
+            if (result.message.includes('Email already')) {
+              document.getElementById('emailError').textContent = result.message;
               document.getElementById('emailError').classList.add('show');
             } else {
-              alert(data.message);
+              showNotification(result.message, 'error');
             }
             
             // Re-enable submit button
             submitBtn.disabled = false;
             submitBtn.textContent = 'Create Account';
           }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred. Please try again.');
-          
-          // Re-enable submit button
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Create Account';
-        });
+        }, 500);
       }
     });
 
@@ -592,6 +582,11 @@
     function socialLogin(provider) {
       alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login will be implemented with OAuth`);
     }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      redirectIfLoggedIn();
+    });
   </script>
 </body>
 </html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Rural Market</title>
+  <link rel="stylesheet" href="HomePage.css">
+  <link rel="stylesheet" href="adminDashboard.css">
+</head>
+<body class="homepage">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="admin-logo">
+          <span>👑</span>
+        </div>
+        <span class="logo-text">Admin Panel</span>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="adminDashboard.html" class="nav-item active" data-section="dashboard">📊 Dashboard</a>
+        <a href="#" class="nav-item" data-section="users">👥 Users</a>
+        <a href="#" class="nav-item" data-section="sellers">🛍️ Sellers</a>
+        <a href="#" class="nav-item" data-section="products">📦 Products</a>
+        <a href="#" class="nav-item" data-section="orders">🛒 Orders</a>
+        <a href="#" class="nav-item" data-section="categories">🏷️ Categories</a>
+        <a href="#" class="nav-item" data-section="reports">📈 Reports</a>
+        <a href="#" class="nav-item" data-section="settings">⚙️ Settings</a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <button class="btn btn-outline" style="width: 100%;" onclick="logout()">Logout</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <!-- Dashboard Section -->
+      <div id="dashboard-section" class="content-section active">
+        <header class="dashboard-header">
+          <h1 class="hero-title">Admin Dashboard</h1>
+          <div class="admin-info">
+            <span id="current-date"></span>
+          </div>
+        </header>
+
+        <div class="stats-grid">
+          <div class="stat-item" style="border-left: 4px solid #3498db;">
+            <div class="stat-number" id="total-users">0</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+          <div class="stat-item" style="border-left: 4px solid #2ecc71;">
+            <div class="stat-number" id="total-sellers">0</div>
+            <div class="stat-label">Active Sellers</div>
+          </div>
+          <div class="stat-item" style="border-left: 4px solid #f39c12;">
+            <div class="stat-number" id="total-products">0</div>
+            <div class="stat-label">Total Products</div>
+          </div>
+          <div class="stat-item" style="border-left: 4px solid #e74c3c;">
+            <div class="stat-number" id="total-orders">0</div>
+            <div class="stat-label">Total Orders</div>
+          </div>
+          <div class="stat-item" style="border-left: 4px solid #9b59b6;">
+            <div class="stat-number" id="total-revenue">০</div>
+            <div class="stat-label">Total Revenue</div>
+          </div>
+          <div class="stat-item" style="border-left: 4px solid #1abc9c;">
+            <div class="stat-number" id="pending-orders">0</div>
+            <div class="stat-label">Pending Orders</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="table-section reveal active">
+            <h2 class="section-title-gradient">Recent Orders</h2>
+            <div class="table-container">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Seller</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-orders-table">
+                  <tr>
+                    <td colspan="6" style="text-align: center; padding: 2rem;">Loading orders...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="table-section reveal active">
+            <h2 class="section-title-gradient">New Users</h2>
+            <div class="table-container">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Date Joined</th>
+                  </tr>
+                </thead>
+                <tbody id="new-users-table">
+                  <tr>
+                    <td colspan="5" style="text-align: center; padding: 2rem;">Loading users...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Users Management Section -->
+      <div id="users-section" class="content-section">
+        <header class="dashboard-header">
+          <h1 class="hero-title">User Management</h1>
+          <button class="btn btn-primary" onclick="openUserModal()">+ Add New User</button>
+        </header>
+
+        <section class="table-section reveal active">
+          <div class="section-header">
+            <h2 class="section-title-gradient">All Users</h2>
+            <input type="text" id="user-search" placeholder="Search users..." class="search-input">
+          </div>
+          <div class="table-container">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="users-table">
+                <tr>
+                  <td colspan="7" style="text-align: center; padding: 2rem;">Loading users...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- Sellers Management Section -->
+      <div id="sellers-section" class="content-section">
+        <header class="dashboard-header">
+          <h1 class="hero-title">Seller Management</h1>
+          <button class="btn btn-primary" onclick="openSellerModal()">+ Approve New Seller</button>
+        </header>
+
+        <section class="table-section reveal active">
+          <div class="section-header">
+            <h2 class="section-title-gradient">All Sellers</h2>
+            <input type="text" id="seller-search" placeholder="Search sellers..." class="search-input">
+          </div>
+          <div class="table-container">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Seller ID</th>
+                  <th>Business Name</th>
+                  <th>Owner Name</th>
+                  <th>Email</th>
+                  <th>Products</th>
+                  <th>Rating</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="sellers-table">
+                <tr>
+                  <td colspan="8" style="text-align: center; padding: 2rem;">Loading sellers...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- Products Management Section -->
+      <div id="products-section" class="content-section">
+        <header class="dashboard-header">
+          <h1 class="hero-title">Product Management</h1>
+          <button class="btn btn-primary" onclick="openProductModal()">+ Add Product</button>
+        </header>
+
+        <section class="table-section reveal active">
+          <div class="section-header">
+            <h2 class="section-title-gradient">All Products</h2>
+            <input type="text" id="product-search" placeholder="Search products..." class="search-input">
+          </div>
+          <div class="table-container">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Product ID</th>
+                  <th>Name</th>
+                  <th>Seller</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table">
+                <tr>
+                  <td colspan="8" style="text-align: center; padding: 2rem;">Loading products...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- Orders Management Section -->
+      <div id="orders-section" class="content-section">
+        <header class="dashboard-header">
+          <h1 class="hero-title">Order Management</h1>
+          <div style="display: flex; gap: 1rem;">
+            <select id="order-filter" class="filter-select" onchange="filterOrders()">
+              <option value="">All Orders</option>
+              <option value="pending">Pending</option>
+              <option value="processing">Processing</option>
+              <option value="shipped">Shipped</option>
+              <option value="delivered">Delivered</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </header>
+
+        <section class="table-section reveal active">
+          <h2 class="section-title-gradient">All Orders</h2>
+          <div class="table-container">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Seller</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Payment</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table">
+                <tr>
+                  <td colspan="8" style="text-align: center; padding: 2rem;">Loading orders...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- Categories Management Section -->
+      <div id="categories-section" class="content-section">
+        <header class="dashboard-header">
+          <h1 class="hero-title">Category Management</h1>
+          <button class="btn btn-primary" onclick="openCategoryModal()">+ Add Category</button>
+        </header>
+
+        <section class="table-section reveal active">
+          <h2 class="section-title-gradient">All Categories</h2>
+          <div class="table-container">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Category ID</th>
+                  <th>Name</th>
+                  <th>Products</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="categories-table">
+                <tr>
+                  <td colspan="6" style="text-align: center; padding: 2rem;">Loading categories...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- Reports Section -->
+      <div id="reports-section" class="content-section">
+        <header class="dashboard-header">
+          <h1 class="hero-title">Reports & Analytics</h1>
+        </header>
+
+        <div class="reports-grid">
+          <section class="report-card">
+            <h3 class="report-title">📊 Sales Overview</h3>
+            <div class="report-content">
+              <div class="report-stat">
+                <span class="label">Today's Sales</span>
+                <span class="value" id="today-sales">০</span>
+              </div>
+              <div class="report-stat">
+                <span class="label">This Month</span>
+                <span class="value" id="month-sales">०</span>
+              </div>
+              <div class="report-stat">
+                <span class="label">Growth Rate</span>
+                <span class="value">+12.5%</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="report-card">
+            <h3 class="report-title">👥 User Analytics</h3>
+            <div class="report-content">
+              <div class="report-stat">
+                <span class="label">New Users</span>
+                <span class="value" id="new-users-count">0</span>
+              </div>
+              <div class="report-stat">
+                <span class="label">Active Users</span>
+                <span class="value" id="active-users-count">0</span>
+              </div>
+              <div class="report-stat">
+                <span class="label">Retention Rate</span>
+                <span class="value">85%</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="report-card">
+            <h3 class="report-title">🛍️ Order Analytics</h3>
+            <div class="report-content">
+              <div class="report-stat">
+                <span class="label">Completed Orders</span>
+                <span class="value" id="completed-orders">0</span>
+              </div>
+              <div class="report-stat">
+                <span class="label">Pending Orders</span>
+                <span class="value" id="pending-orders-report">0</span>
+              </div>
+              <div class="report-stat">
+                <span class="label">Avg. Order Value</span>
+                <span class="value" id="avg-order-value">०</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <div id="settings-section" class="content-section">
+        <header class="dashboard-header">
+          <h1 class="hero-title">Settings</h1>
+        </header>
+
+        <section class="settings-section">
+          <div class="settings-card">
+            <h3>Website Settings</h3>
+            <form>
+              <div class="form-group">
+                <label>Website Name</label>
+                <input type="text" value="Rural Market" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Contact Email</label>
+                <input type="email" value="admin@ruralmarket.com" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Contact Phone</label>
+                <input type="tel" value="+880-XXXX-XXXXXX" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+          </div>
+
+          <div class="settings-card">
+            <h3>Security Settings</h3>
+            <form>
+              <div class="form-group">
+                <label>Current Password</label>
+                <input type="password" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>New Password</label>
+                <input type="password" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">Update Password</button>
+            </form>
+          </div>
+
+          <div class="settings-card">
+            <h3>System Settings</h3>
+            <form>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" checked> Enable Seller Registration
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" checked> Enable Buyer Orders
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox"> Maintenance Mode
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary">Save Settings</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="adminDashboard.js"></script>
+</body>
+</html>

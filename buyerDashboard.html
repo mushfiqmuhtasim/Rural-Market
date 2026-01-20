@@ -1,143 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rural Market — Buyer Dashboard</title>
-  <link rel="stylesheet" href="buyerDashboard.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Dashboard - Rural Market</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; }
+    
+    .dashboard-header {
+      background: linear-gradient(135deg, #2d8b5a 0%, #1a5f3a 100%);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .dashboard-title { font-size: 1.5rem; font-weight: 700; }
+    
+    .dashboard-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .dashboard-nav a, .dashboard-nav button {
+      color: white;
+      text-decoration: none;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-nav a:hover, .dashboard-nav button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+    .welcome-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .welcome-title { font-size: 2rem; margin-bottom: 0.5rem; }
+    .welcome-text { color: #666; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-left: 4px solid #2d8b5a;
+    }
+
+    .stat-number { font-size: 2rem; font-weight: 700; color: #2d8b5a; margin-bottom: 0.5rem; }
+    .stat-label { color: #666; font-size: 0.95rem; }
+
+    .section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #eee;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 600;
+      color: #999;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      color: #2d8b5a;
+      border-bottom-color: #2d8b5a;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .order-item {
+      padding: 1rem;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .order-info { flex: 1; }
+    .order-id { font-weight: 600; margin-bottom: 0.25rem; }
+    .order-date { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; }
+    .order-total { font-weight: 600; color: #2d8b5a; }
+
+    .order-status {
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-processing { background: #cfe2ff; color: #084298; }
+    .status-shipped { background: #cff4fc; color: #055160; }
+    .status-delivered { background: #d1e7dd; color: #0f5132; }
+
+    .btn-primary {
+      padding: 0.6rem 1.2rem;
+      background: #2d8b5a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover { background: #1a5f3a; }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-header { flex-direction: column; }
+      .dashboard-nav { flex-direction: column; width: 100%; }
+      .dashboard-nav a, .dashboard-nav button { width: 100%; text-align: center; }
+      .order-item { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
-<body class="buyer-page">
-  <div class="buyer-layout">
-    <!-- Header with Nav -->
-    <header class="buyer-header">
-      <div class="header-container">
-        <div class="logo-section">
-          <div class="logo-icon">🦋</div>
-          <div class="logo-text">Rural Market</div>
+<body>
+  <div class="dashboard-header">
+    <div class="dashboard-title">🦋 Rural Market</div>
+    <div style="flex: 1; text-align: center;">👋 Buyer Dashboard</div>
+    <div class="dashboard-nav">
+      <a href="products.html">📦 Browse Products</a>
+      <a href="cart.html">🛒 Cart</a>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="welcome-section">
+      <h1 class="welcome-title" id="welcome-msg">Welcome!</h1>
+      <p class="welcome-text">Manage your orders and discover amazing rural products</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="total-spent">୦</div>
+        <div class="stat-label">Total Spent</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="total-orders">0</div>
+        <div class="stat-label">Total Orders</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="pending-orders">0</div>
+        <div class="stat-label">Pending Orders</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="delivered-orders">0</div>
+        <div class="stat-label">Delivered</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">📋 Your Orders</h2>
+      
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('all')">All Orders</button>
+        <button class="tab-btn" onclick="switchTab('pending')">Pending</button>
+        <button class="tab-btn" onclick="switchTab('shipped')">Shipped</button>
+        <button class="tab-btn" onclick="switchTab('delivered')">Delivered</button>
+      </div>
+
+      <div id="all" class="tab-content active">
+        <div id="all-orders-list"></div>
+      </div>
+
+      <div id="pending" class="tab-content">
+        <div id="pending-orders-list"></div>
+      </div>
+
+      <div id="shipped" class="tab-content">
+        <div id="shipped-orders-list"></div>
+      </div>
+
+      <div id="delivered" class="tab-content">
+        <div id="delivered-orders-list"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">💰 Account Settings</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div>
+          <label style="display: block; color: #666; font-size: 0.9rem; margin-bottom: 0.25rem;">Full Name</label>
+          <input type="text" id="fullname-input" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px;" readonly>
         </div>
-        <nav class="buyer-nav">
-          <a href="buyerDashboard.html" class="nav-link active">Home</a>
-          <a href="#" class="nav-link">Browse</a>
-          <a href="#" class="nav-link">Orders</a>
-          <a href="#" class="nav-link">Account</a>
-        </nav>
-        <div class="header-actions">
-          <a href="cart.html" class="cart-link">🛒 Cart <span class="cart-count">0</span></a>
-          <button class="btn btn-outline">Logout</button>
+        <div>
+          <label style="display: block; color: #666; font-size: 0.9rem; margin-bottom: 0.25rem;">Email</label>
+          <input type="email" id="email-input" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px;" readonly>
+        </div>
+        <div>
+          <label style="display: block; color: #666; font-size: 0.9rem; margin-bottom: 0.25rem;">Phone</label>
+          <input type="tel" id="phone-input" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px;" readonly>
         </div>
       </div>
-    </header>
-
-    <main class="buyer-main">
-      <!-- Welcome Section -->
-      <section class="welcome-section">
-        <h2 class="welcome-title">Welcome back, Buyer!</h2>
-        <p class="welcome-text">Discover authentic rural products from local artisans</p>
-      </section>
-
-      <!-- Featured Products -->
-      <section class="featured-section">
-        <h3 class="section-title">Featured Products</h3>
-        <div class="products-grid">
-          
-          <article class="product-card">
-            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Handwoven Silk Saree">
-            <div class="product-info">
-              <h4 class="product-title">Handwoven Silk Saree</h4>
-              <div class="product-rating">⭐⭐⭐⭐⭐ (24 reviews)</div>
-              <div class="product-price-section">
-                <span class="product-price">৳ 3,500</span>
-                <span class="product-seller">By Amir's Shop</span>
-              </div>
-              <button class="btn btn-add-cart">Add to Cart</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Terracotta Vase">
-            <div class="product-info">
-              <h4 class="product-title">Terracotta Vase</h4>
-              <div class="product-rating">⭐⭐⭐⭐ (18 reviews)</div>
-              <div class="product-price-section">
-                <span class="product-price">৳ 800</span>
-                <span class="product-seller">By Karim's Studio</span>
-              </div>
-              <button class="btn btn-add-cart">Add to Cart</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Bamboo Basket">
-            <div class="product-info">
-              <h4 class="product-title">Bamboo Basket</h4>
-              <div class="product-rating">⭐⭐⭐⭐⭐ (32 reviews)</div>
-              <div class="product-price-section">
-                <span class="product-price">৳ 450</span>
-                <span class="product-seller">By Rina's Collection</span>
-              </div>
-              <button class="btn btn-add-cart">Add to Cart</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Handmade Pottery">
-            <div class="product-info">
-              <h4 class="product-title">Handmade Pottery Set</h4>
-              <div class="product-rating">⭐⭐⭐⭐ (12 reviews)</div>
-              <div class="product-price-section">
-                <span class="product-price">৳ 1,200</span>
-                <span class="product-seller">By Clay Works</span>
-              </div>
-              <button class="btn btn-add-cart">Add to Cart</button>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- Recent Orders Section -->
-      <section class="recent-orders">
-        <h3 class="section-title">Your Recent Orders</h3>
-        <div class="table-container">
-          <table class="orders-table">
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Product</th>
-                <th>Seller</th>
-                <th>Status</th>
-                <th>Total</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#ORD-5021</td>
-                <td>Handwoven Silk Saree</td>
-                <td>Amir's Shop</td>
-                <td><span class="status-delivered">Delivered</span></td>
-                <td>৳ 3,500</td>
-                <td>2026-01-15</td>
-              </tr>
-              <tr>
-                <td>#ORD-4998</td>
-                <td>Bamboo Basket x2</td>
-                <td>Rina's Collection</td>
-                <td><span class="status-shipped">Shipped</span></td>
-                <td>৳ 900</td>
-                <td>2026-01-12</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="buyer-footer">
-      <p>&copy; 2026 Rural Market. All rights reserved.</p>
-    </footer>
+    </div>
   </div>
+
+  <script src="app.js"></script>
+  <script>
+    function loadDashboard() {
+      if (!isLoggedIn() || app.currentUser.role !== 'buyer') {
+        window.location.href = 'signin.html';
+        return;
+      }
+
+      // Welcome message
+      document.getElementById('welcome-msg').textContent = `Welcome back, ${app.currentUser.fullName}!`;
+
+      // User info
+      document.getElementById('fullname-input').value = app.currentUser.fullName;
+      document.getElementById('email-input').value = app.currentUser.email;
+      document.getElementById('phone-input').value = app.currentUser.phone;
+
+      // Get user's orders
+      const userOrders = app.getOrders(app.currentUser.id);
+
+      // Calculate stats
+      const totalSpent = userOrders.reduce((sum, order) => sum + order.totalAmount, 0);
+      const pendingCount = userOrders.filter(o => o.status === 'pending').length;
+      const deliveredCount = userOrders.filter(o => o.status === 'delivered').length;
+
+      document.getElementById('total-spent').textContent = formatCurrency(totalSpent);
+      document.getElementById('total-orders').textContent = userOrders.length;
+      document.getElementById('pending-orders').textContent = pendingCount;
+      document.getElementById('delivered-orders').textContent = deliveredCount;
+
+      // Render orders
+      renderOrders('all', userOrders);
+      renderOrders('pending', userOrders.filter(o => o.status === 'pending'));
+      renderOrders('shipped', userOrders.filter(o => o.status === 'shipped'));
+      renderOrders('delivered', userOrders.filter(o => o.status === 'delivered'));
+    }
+
+    function renderOrders(tab, orders) {
+      const container = document.getElementById(`${tab}-orders-list`);
+
+      if (orders.length === 0) {
+        container.innerHTML = `<div class="empty-state">No ${tab} orders found</div>`;
+        return;
+      }
+
+      container.innerHTML = orders.map(order => `
+        <div class="order-item">
+          <div class="order-info">
+            <div class="order-id">${order.id}</div>
+            <div class="order-date">${formatDate(order.orderDate)}</div>
+            <div style="font-size: 0.9rem; color: #666;">Items: ${order.items.length}</div>
+          </div>
+          <div class="order-total">${formatCurrency(order.totalAmount)}</div>
+          <span class="order-status status-${order.status}">${order.status}</span>
+          <button class="btn-primary" onclick="viewOrderDetails('${order.id}')">View Details</button>
+        </div>
+      `).join('');
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function viewOrderDetails(orderId) {
+      const order = app.orders.find(o => o.id === orderId);
+      if (order) {
+        let details = `Order ID: ${order.id}\n`;
+        details += `Date: ${formatDate(order.orderDate)}\n`;
+        details += `Status: ${order.status}\n`;
+        details += `Total: ${formatCurrency(order.totalAmount)}\n\n`;
+        details += `Items:\n`;
+        order.items.forEach(item => {
+          details += `- ${item.name} (Qty: ${item.quantity}) - ${formatCurrency(item.price * item.quantity)}\n`;
+        });
+        details += `\nShipping Address: ${order.shippingAddress}\n`;
+        details += `Estimated Delivery: ${formatDate(order.estimatedDelivery)}`;
+        
+        alert(details);
+      }
+    }
+
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        app.logoutUser();
+        window.location.href = 'homepage.html';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDashboard);
+  </script>
 </body>
 </html>
