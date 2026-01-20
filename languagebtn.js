@@ -128,6 +128,9 @@ function setLanguage(lang) {
 
 document.addEventListener("DOMContentLoaded", () => {
   setLanguage("en");
+  
+  // Set happy customers percentage
+  document.getElementById("happyCustomers2").textContent = "95";
 });
 const heroImage = document.querySelector('.hero-image');
 
