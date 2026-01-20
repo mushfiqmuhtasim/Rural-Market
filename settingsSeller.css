@@ -1,0 +1,7 @@
+/* Settings page styles */
+
+.settings-form { display:flex; flex-direction:column; gap:0.75rem; max-width:520px; }
+.settings-form label { display:flex; flex-direction:column; gap:0.25rem; font-weight:600; }
+.settings-form input { padding:0.5rem 0.75rem; border-radius:6px; border:1px solid #ddd; }
+
+@media (max-width:480px) { .settings-form { width:100%; } }

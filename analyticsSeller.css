@@ -1,0 +1,13 @@
+/* Analytics page specific styles */
+
+.section-title-gradient { font-size: 1.25rem !important; }
+
+.stats-grid { margin-bottom: 1.5rem; }
+
+.table-section { margin-top: 1rem; }
+
+.dashboard-table th, .dashboard-table td { font-size: 0.95rem; }
+
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}

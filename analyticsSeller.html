@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seller Hub — Analytics</title>
+  <link rel="stylesheet" href="deshboardSeller.css">
+  <link rel="stylesheet" href="analyticsSeller.css">
+</head>
+<body class="homepage">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="butterfly-logo"><div class="butterfly"></div></div>
+        <span class="logo-text">Seller Hub</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="deshboardSeller.html" class="nav-item">📊 Dashboard</a>
+        <a href="productsSeller.html" class="nav-item">📦 My Products</a>
+        <a href="ordersSeller.html" class="nav-item">🛍️ Orders</a>
+        <a href="analyticsSeller.html" class="nav-item active">📈 Analytics</a>
+        <a href="settingsSeller.html" class="nav-item">⚙️ Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline" style="width:100%; border:none; outline:none; box-shadow:none;">Logout</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <h1 class="hero-title">Analytics</h1>
+        <div class="controls">
+          <select>
+            <option>Last 7 days</option>
+            <option>Last 30 days</option>
+            <option>Last 90 days</option>
+          </select>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">৳ 24,150</div>
+          <div class="stat-label">Earnings (30d)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">482</div>
+          <div class="stat-label">Orders</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1,250</div>
+          <div class="stat-label">Product Views</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4.8★</div>
+          <div class="stat-label">Avg. Rating</div>
+        </div>
+      </section>
+
+      <section class="table-section">
+        <h2 class="section-title-gradient">Sales by Product (sample)</h2>
+        <div class="table-container">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Units Sold</th>
+                <th>Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Handwoven Silk Saree</td>
+                <td>120</td>
+                <td>৳ 420,000</td>
+              </tr>
+              <tr>
+                <td>Terracotta Vase</td>
+                <td>86</td>
+                <td>৳ 68,800</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

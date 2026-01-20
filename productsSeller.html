@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seller Hub — My Products</title>
+  <link rel="stylesheet" href="deshboardSeller.css">
+  <link rel="stylesheet" href="productsSeller.css">
+</head>
+<body class="homepage">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="butterfly-logo"><div class="butterfly"></div></div>
+        <span class="logo-text">Seller Hub</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="deshboardSeller.html" class="nav-item">📊 Dashboard</a>
+        <a href="productsSeller.html" class="nav-item active">📦 My Products</a>
+        <a href="ordersSeller.html" class="nav-item">🛍️ Orders</a>
+        <a href="analyticsSeller.html" class="nav-item">📈 Analytics</a>
+        <a href="settingsSeller.html" class="nav-item">⚙️ Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline" style="width:100%; border:none; outline:none; box-shadow:none;">Logout</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <h1 class="hero-title">My Products</h1>
+        <div class="controls">
+          <input class="search-input" type="search" placeholder="Search products...">
+          <button class="btn btn-primary">+ Add Product</button>
+        </div>
+      </header>
+
+      <section class="products-controls">
+        <div class="filters">
+          <select>
+            <option>All categories</option>
+            <option>Clothing</option>
+            <option>Home</option>
+            <option>Handicraft</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="products-grid">
+        <article class="product-card">
+          <img class="product-img" src="https://via.placeholder.com/260x160" alt="Handwoven Silk Saree">
+          <div class="product-info">
+            <h3 class="product-title">Handwoven Silk Saree <span class="product-qty">x1</span></h3>
+            <div class="product-meta">
+              <span class="product-price">৳ 3,500</span>
+              <span class="stock">In stock</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-ghost">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="https://via.placeholder.com/260x160" alt="Terracotta Vase">
+          <div class="product-info">
+            <h3 class="product-title">Terracotta Vase <span class="product-qty">x2</span></h3>
+            <div class="product-meta">
+              <span class="product-price">৳ 800</span>
+              <span class="stock">Low stock</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-ghost">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="C:\Users\LENOVO\Downloads\webtech_demo-master\webtech_demo-master\Image\OIP.webp" alt="Bamboo Basket">
+          <div class="product-info">
+            <h3 class="product-title">Bamboo Basket <span class="product-qty">x3</span></h3>
+            <div class="product-meta">
+              <span class="product-price">৳ 450</span>
+              <span class="stock">In stock</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-ghost">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>

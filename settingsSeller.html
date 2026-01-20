@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seller Hub — Settings</title>
+  <link rel="stylesheet" href="deshboardSeller.css">
+  <link rel="stylesheet" href="settingsSeller.css">
+</head>
+<body class="homepage">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="butterfly-logo"><div class="butterfly"></div></div>
+        <span class="logo-text">Seller Hub</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="deshboardSeller.html" class="nav-item">📊 Dashboard</a>
+        <a href="productsSeller.html" class="nav-item">📦 My Products</a>
+        <a href="ordersSeller.html" class="nav-item">🛍️ Orders</a>
+        <a href="analyticsSeller.html" class="nav-item">📈 Analytics</a>
+        <a href="settingsSeller.html" class="nav-item active">⚙️ Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline" style="width:100%; border:none; outline:none; box-shadow:none;">Logout</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <h1 class="hero-title">Settings</h1>
+      </header>
+
+      <section class="table-section">
+        <h2 class="section-title-gradient">Store Settings</h2>
+        <form class="settings-form">
+          <label>
+            Store name
+            <input type="text" placeholder="Your store name">
+          </label>
+          <label>
+            Contact email
+            <input type="email" placeholder="you@example.com">
+          </label>
+          <label>
+            Phone
+            <input type="tel" placeholder="01XXXXXXXXX">
+          </label>
+          <div style="margin-top:0.5rem;">
+            <button class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

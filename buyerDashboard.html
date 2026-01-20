@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rural Market — Buyer Dashboard</title>
+  <link rel="stylesheet" href="buyerDashboard.css">
+</head>
+<body class="buyer-page">
+  <div class="buyer-layout">
+    <!-- Header with Nav -->
+    <header class="buyer-header">
+      <div class="header-container">
+        <div class="logo-section">
+          <div class="logo-icon">🦋</div>
+          <div class="logo-text">Rural Market</div>
+        </div>
+        <nav class="buyer-nav">
+          <a href="buyerDashboard.html" class="nav-link active">Home</a>
+          <a href="#" class="nav-link">Browse</a>
+          <a href="#" class="nav-link">Orders</a>
+          <a href="#" class="nav-link">Account</a>
+        </nav>
+        <div class="header-actions">
+          <a href="cart.html" class="cart-link">🛒 Cart <span class="cart-count">0</span></a>
+          <button class="btn btn-outline">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="buyer-main">
+      <!-- Welcome Section -->
+      <section class="welcome-section">
+        <h2 class="welcome-title">Welcome back, Buyer!</h2>
+        <p class="welcome-text">Discover authentic rural products from local artisans</p>
+      </section>
+
+      <!-- Featured Products -->
+      <section class="featured-section">
+        <h3 class="section-title">Featured Products</h3>
+        <div class="products-grid">
+          
+          <article class="product-card">
+            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Handwoven Silk Saree">
+            <div class="product-info">
+              <h4 class="product-title">Handwoven Silk Saree</h4>
+              <div class="product-rating">⭐⭐⭐⭐⭐ (24 reviews)</div>
+              <div class="product-price-section">
+                <span class="product-price">৳ 3,500</span>
+                <span class="product-seller">By Amir's Shop</span>
+              </div>
+              <button class="btn btn-add-cart">Add to Cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Terracotta Vase">
+            <div class="product-info">
+              <h4 class="product-title">Terracotta Vase</h4>
+              <div class="product-rating">⭐⭐⭐⭐ (18 reviews)</div>
+              <div class="product-price-section">
+                <span class="product-price">৳ 800</span>
+                <span class="product-seller">By Karim's Studio</span>
+              </div>
+              <button class="btn btn-add-cart">Add to Cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Bamboo Basket">
+            <div class="product-info">
+              <h4 class="product-title">Bamboo Basket</h4>
+              <div class="product-rating">⭐⭐⭐⭐⭐ (32 reviews)</div>
+              <div class="product-price-section">
+                <span class="product-price">৳ 450</span>
+                <span class="product-seller">By Rina's Collection</span>
+              </div>
+              <button class="btn btn-add-cart">Add to Cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img class="product-img" src="https://via.placeholder.com/200x150" alt="Handmade Pottery">
+            <div class="product-info">
+              <h4 class="product-title">Handmade Pottery Set</h4>
+              <div class="product-rating">⭐⭐⭐⭐ (12 reviews)</div>
+              <div class="product-price-section">
+                <span class="product-price">৳ 1,200</span>
+                <span class="product-seller">By Clay Works</span>
+              </div>
+              <button class="btn btn-add-cart">Add to Cart</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Recent Orders Section -->
+      <section class="recent-orders">
+        <h3 class="section-title">Your Recent Orders</h3>
+        <div class="table-container">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Seller</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#ORD-5021</td>
+                <td>Handwoven Silk Saree</td>
+                <td>Amir's Shop</td>
+                <td><span class="status-delivered">Delivered</span></td>
+                <td>৳ 3,500</td>
+                <td>2026-01-15</td>
+              </tr>
+              <tr>
+                <td>#ORD-4998</td>
+                <td>Bamboo Basket x2</td>
+                <td>Rina's Collection</td>
+                <td><span class="status-shipped">Shipped</span></td>
+                <td>৳ 900</td>
+                <td>2026-01-12</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="buyer-footer">
+      <p>&copy; 2026 Rural Market. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+/* Orders page styles (small overrides) */
+
+.table-section { /* ensure good spacing */
+  padding: 1.25rem;
+}
+
+.table-container { overflow-x: auto; }
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.dashboard-table th {
+  padding: 0.9rem;
+  text-align: left;
+  font-weight: 600;
+  color: #1a5f3a;
+  background: #f7f7f7;
+  border-bottom: 2px solid #eee;
+}
+
+.dashboard-table td {
+  padding: 0.85rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 500;
+  color: #333;
+}
+
+.product-qty { background: #e8f5e9; color:#1a5f3a; padding:0.15rem 0.45rem; border-radius:4px; margin-left:0.5rem; font-weight:700; }
+
+.badge-delivered { background: #d4edda; color:#155724; padding:0.35rem 0.6rem; border-radius:20px; font-weight:600; }
+.badge-cancelled { background: #f8d7da; color:#721c24; padding:0.35rem 0.6rem; border-radius:20px; font-weight:600; }
+
+@media (max-width: 768px) {
+  .dashboard-table th, .dashboard-table td { padding: 0.65rem; }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seller Hub — Orders</title>
+  <link rel="stylesheet" href="deshboardSeller.css">
+  <link rel="stylesheet" href="ordersSeller.css">
+</head>
+<body class="homepage">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="butterfly-logo"><div class="butterfly"></div></div>
+        <span class="logo-text">Seller Hub</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="deshboardSeller.html" class="nav-item">📊 Dashboard</a>
+        <a href="productsSeller.html" class="nav-item">📦 My Products</a>
+        <a href="ordersSeller.html" class="nav-item active">🛍️ Orders</a>
+        <a href="analyticsSeller.html" class="nav-item">📈 Analytics</a>
+        <a href="settingsSeller.html" class="nav-item">⚙️ Settings</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-outline" style="width:100%; border:none; outline:none; box-shadow:none;">Logout</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <h1 class="hero-title">Orders</h1>
+        <div class="controls">
+          <input class="search-input" type="search" placeholder="Search orders...">
+          <button class="btn btn-primary">Export</button>
+        </div>
+      </header>
+
+      <section class="table-section reveal active">
+        <h2 class="section-title-gradient">Recent Orders</h2>
+        <div class="table-container">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#RM-9021</td>
+                <td>Handwoven Silk Saree <span class="product-qty">x1</span></td>
+                <td>Anika Rahman</td>
+                <td><span class="badge badge-pending">Pending</span></td>
+                <td>৳ 4,500</td>
+                <td>2026-01-10</td>
+              </tr>
+              <tr>
+                <td>#RM-8944</td>
+                <td>Terracotta Vase <span class="product-qty">x2</span></td>
+                <td>Karim Ullah</td>
+                <td><span class="badge badge-shipped">Shipped</span></td>
+                <td>৳ 1,200</td>
+                <td>2026-01-08</td>
+              </tr>
+              <tr>
+                <td>#RM-8877</td>
+                <td>Bamboo Basket <span class="product-qty">x3</span></td>
+                <td>Rina Sultana</td>
+                <td><span class="badge badge-delivered">Delivered</span></td>
+                <td>৳ 1,350</td>
+                <td>2026-01-05</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

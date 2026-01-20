@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Dashboard - Rural Market</title>
+  <link rel="stylesheet" href="HomePage.css">
+  <link rel="stylesheet" href="SellerDashboard.css">
+  <link rel="stylesheet" href="deshboardSeller.css">
+</head>
+<body class="homepage">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="butterfly-logo">
+          <div class="butterfly"></div>
+        </div>
+        <span class="logo-text">Seller Hub</span>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="deshboardSeller.html" class="nav-item active">📊 Dashboard</a>
+        <a href="productsSeller.html" class="nav-item">📦 My Products</a>
+        <a href="ordersSeller.html" class="nav-item">🛍️ Orders</a>
+        <a href="analyticsSeller.html" class="nav-item">📈 Analytics</a>
+        <a href="settingsSeller.html" class="nav-item">⚙️ Settings</a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <button class="btn btn-outline" style="width: 100%;">Logout</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <h1 class="hero-title">Welcome back, Seller!</h1>
+        <button class="btn btn-primary">+ Add New Product</button>
+      </header>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">৳ 12,450</div>
+          <div class="stat-label">Total Earnings</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24</div>
+          <div class="stat-label">Active Orders</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">156</div>
+          <div class="stat-label">Product Views</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4.9★</div>
+          <div class="stat-label">Seller Rating</div>
+        </div>
+      </div>
+
+      <section class="table-section reveal active">
+        <h2 class="section-title-gradient">Recent Orders</h2>
+        <div class="table-container">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#RM-9021</td>
+                <td>Handwoven Silk Saree <span class="product-qty">x1</span></td>
+                <td>Anika Rahman</td>
+                <td><span class="badge badge-pending">Pending</span></td>
+                <td>৳ 4,500</td>
+              </tr>
+              <tr>
+                <td>#RM-8944</td>
+                <td>Terracotta Vase <span class="product-qty">x2</span></td>
+                <td>Karim Ullah</td>
+                <td><span class="badge badge-shipped">Shipped</span></td>
+                <td>৳ 1,200</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

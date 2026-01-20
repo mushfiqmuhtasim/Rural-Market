@@ -318,6 +318,30 @@
       margin-top: 1rem;
     }
 
+    .back-button {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: none;
+      border: none;
+      color: #9333ea;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background: rgba(147, 51, 234, 0.1);
+      transform: translateX(-4px);
+    }
+
     .role-customer {
       background: #dbeafe;
       color: #1e40af;
@@ -351,6 +375,7 @@
 </head>
 <body>
   <div class="signin-container">
+    <a href="homepage.html" class="back-button">← Back</a>
     <div class="logo-section">
       <div class="logo-icon">🦋</div>
       <div class="logo-text">Rural Market</div>
@@ -382,7 +407,7 @@
           <input type="checkbox" id="rememberMe" class="checkbox-input">
           <label class="checkbox-label" for="rememberMe">Remember me</label>
         </div>
-        <a href="#" class="forgot-password">Forgot Password?</a>
+        <a href="forgotPassword.html" class="forgot-password">Forgot Password?</a>
       </div>
 
       <button type="submit" class="submit-btn">Sign In</button>
